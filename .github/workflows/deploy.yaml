@@ -43,11 +43,15 @@ jobs:
     - name: Install backend dependencies
       run: |
         cd server
+        rm -f package-lock.json
+        npm install
         npm ci
 
     - name: Install frontend dependencies
       run: |
         cd app
+        rm -f package-lock.json
+        npm install
         npm ci
 
     - name: Run backend tests
