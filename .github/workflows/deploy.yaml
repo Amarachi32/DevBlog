@@ -49,19 +49,21 @@ jobs:
       run: |
         cd app
         npm install --legacy-peer-deps
+# Skip backend tests since they don't exist
 
-    - name: Run backend tests
-      run: |
-        cd server
-        npm test --if-present
-      env:
-        ATLAS_URI: mongodb://localhost:27017/testdb
+    # - name: Run backend tests
+    #   run: |
+    #     cd server
+    #     npm test --if-present
+    #   env:
+    #     ATLAS_URI: mongodb://localhost:27017/testdb
 
     - name: Run frontend tests
       run: |
         cd app
         npm test -- --coverage --watchAll=false
-
+      env:
+        CI: true
     - name: Build frontend
       run: |
         cd app
