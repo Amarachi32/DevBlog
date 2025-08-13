@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: devblog-backend-prod
+    env: docker
+    dockerfilePath: ./server/Dockerfile
+    branch: main
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ATLAS_URI
+        fromSecret: ATLAS_URI
+      - key: PORT
+        value: 5000
+    healthCheckPath: /health
+
+  - type: web
+    name: devblog-backend-staging
+    env: docker
+    dockerfilePath: ./server/Dockerfile
+    branch: develop
+    envVars:
+      - key: NODE_ENV
+        value: staging
+      - key: ATLAS_URI
+        fromSecret: ATLAS_URI_STAGING
+      - key: PORT
+        value: 5000
+    healthCheckPath: /health
+
+  - type: web
+    name: devblog-frontend-prod
+    env: docker
+    dockerfilePath: ./app/Dockerfile
+    branch: main
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://devblog-backend-prod.onrender.com
+
+  - type: web
+    name: devblog-frontend-staging
+    env: docker
+    dockerfilePath: ./app/Dockerfile
+    branch: develop
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://devblog-backend-staging.onrender.com
