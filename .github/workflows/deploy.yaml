@@ -43,21 +43,17 @@ jobs:
     - name: Install backend dependencies
       run: |
         cd server
-        rm -f package-lock.json
-        npm install
-        npm ci
+        npm install        
 
     - name: Install frontend dependencies
       run: |
         cd app
-        rm -f package-lock.json
-        npm install
-        npm ci
+        npm install --legacy-peer-deps
 
     - name: Run backend tests
       run: |
         cd server
-        npm test
+        npm test --if-present
       env:
         ATLAS_URI: mongodb://localhost:27017/testdb
 
