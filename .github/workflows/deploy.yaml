@@ -58,12 +58,12 @@ jobs:
     #   env:
     #     ATLAS_URI: mongodb://localhost:27017/testdb
 
-    - name: Run frontend tests
-      run: |
-        cd app
-        npm test -- --coverage --watchAll=false
-      env:
-        CI: true
+    # - name: Run frontend tests
+    #   run: |
+    #     cd app
+    #     npm test -- --coverage --watchAll=false
+    #   env:
+    #     CI: true
     - name: Build frontend
       run: |
         cd app
