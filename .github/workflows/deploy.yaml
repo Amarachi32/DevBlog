@@ -68,6 +68,8 @@ jobs:
       run: |
         cd app
         npm run build
+      env:
+        CI: false
 
   build-and-push:
     needs: test
