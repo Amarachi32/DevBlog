@@ -10,6 +10,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// A simple root endpoint to satisfy health checks
+app.get("/", (req, res) => {
+  res.status(200).send("Server is running!");
+});
 // Load the /posts routes
 app.use("/posts", posts);
 
