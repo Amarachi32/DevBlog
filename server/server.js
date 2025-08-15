@@ -6,3 +6,12 @@ app.get('/health', (req, res) => {
     environment: process.env.NODE_ENV 
   });
 });
+
+// Add this health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'healthy', 
+    timestamp: new Date().toISOString(),
+    port: process.env.PORT || 18000
+  });
+});

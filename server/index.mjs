@@ -9,7 +9,9 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "healthy" });
+});
 // A simple root endpoint to satisfy health checks
 app.get("/", (req, res) => {
   res.status(200).send("Server is running!");
