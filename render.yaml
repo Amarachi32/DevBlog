@@ -34,7 +34,7 @@ services:
     branch: main
     envVars:
       - key: REACT_APP_API_URL
-        value: https://devblog-backend-prod.onrender.com
+        value: https://devblog-backend-live.onrender.com
 
   - type: web
     name: devblog-frontend-staging
@@ -43,4 +43,5 @@ services:
     branch: develop
     envVars:
       - key: REACT_APP_API_URL
-        value: https://devblog-backend-staging.onrender.com
+        value: https://devblog-backend-prod.onrender.com
+        # value: https://devblog-backend-staging.onrender.com
