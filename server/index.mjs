@@ -10,7 +10,16 @@ console.log('=== END ENV VARS ===');
 const PORT = process.env.PORT || 5050;
 const app = express();
 
-app.use(cors());
+//app.use(cors());
+const cors = require('cors');
+
+app.use(cors({
+  origin: [
+    'http://localhost:3000', // for local development
+    'https://devblog-frontend-staging.onrender.com', // your frontend URL
+  ],
+  credentials: true
+}));
 app.use(express.json());
 app.get("/health", (req, res) => {
   res.status(200).json({ status: "healthy" });
