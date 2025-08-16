@@ -4,6 +4,9 @@ import "./loadEnvironment.mjs";
 import "express-async-errors";
 import posts from "./routes/posts.mjs";
 
+console.log('=== ALL ENVIRONMENT VARIABLES ===');
+console.log(JSON.stringify(process.env, null, 2));
+console.log('=== END ENV VARS ===');
 const PORT = process.env.PORT || 5050;
 const app = express();
 
