@@ -36,12 +36,44 @@ router.get("/:id", async (req, res) => {
 });
 
 // Add a new document to the collection
+// router.post("/", async (req, res) => {
+//   let collection = await db.collection("posts");
+//   let newDocument = req.body;
+//   newDocument.date = new Date();
+//   let result = await collection.insertOne(newDocument);
+//   res.status(201).send(result);
+//   //res.status(201).json(result);
+//   //res.send(result).status(204);
+// });
+
 router.post("/", async (req, res) => {
-  let collection = await db.collection("posts");
-  let newDocument = req.body;
-  newDocument.date = new Date();
-  let result = await collection.insertOne(newDocument);
-  res.send(result).status(204);
+  try {
+    console.log("POST /posts received:", req.body);
+    console.log("Database connection:", db ? "Connected" : "Not connected");
+    
+    if (!db) {
+      throw new Error("Database not connected");
+    }
+    
+    let collection = await db.collection("posts");
+    let newDocument = req.body;
+    newDocument.date = new Date();
+    
+    console.log("Inserting document:", newDocument);
+    let result = await collection.insertOne(newDocument);
+    console.log("Insert result:", result);
+    
+    res.status(201).json({
+      success: true,
+      id: result.insertedId
+    });
+  } catch (error) {
+    console.error("Error creating post:", error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
 });
 
 // Update the post with a new comment
