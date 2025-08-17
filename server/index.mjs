@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
   res.status(200).send("Server is running!");
 });
 // Load the /posts routes
-app.use("/api/posts", posts);
+app.use("/posts", posts);
 
 // Global error handling
 app.use((err, _req, res, next) => {
